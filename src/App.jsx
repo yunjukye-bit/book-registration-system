@@ -177,36 +177,40 @@ const BookRegistrationSystem = () => {
     }
   };
 
-  const handleSubmit = async () => {
-    const filledRows = rows.filter(row => hasContent(row));
-    
-    if (filledRows.length === 0) {
-      alert('입력된 데이터가 없습니다.');
-      return;
-    }
+const handleSubmit = async () => {
+  // 요청일자를 제외한 필수 필드만 체크
+  const filledRows = rows.filter(row => 
+    row.bookId || row.bookName || row.author || row.publisher || 
+    row.isbn || row.price || row.paperDate || row.ebookDate
+  );
+  
+  if (filledRows.length === 0) {
+    alert('입력된 데이터가 없습니다.');
+    return;
+  }
 
-    setIsLoading(true);
-    try {
-      await appendToSheet(filledRows);
-      setRows(Array(10).fill(null).map((_, idx) => ({
-        id: idx,
-        bookId: '',
-        bookName: '',
-        author: '',
-        publisher: '',
-        isbn: '',
-        price: '',
-        paperDate: '',
-        ebookDate: '',
-        requestDate: ''
-      })));
-      alert(filledRows.length + '건의 도서가 저장되었습니다!');
-    } catch (err) {
-      alert('오류: ' + err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  setIsLoading(true);
+  try {
+    await appendToSheet(filledRows);
+    setRows(Array(10).fill(null).map((_, idx) => ({
+      id: idx,
+      bookId: '',
+      bookName: '',
+      author: '',
+      publisher: '',
+      isbn: '',
+      price: '',
+      paperDate: '',
+      ebookDate: '',
+      requestDate: ''
+    })));
+    alert(filledRows.length + '건의 도서가 저장되었습니다!');
+  } catch (err) {
+    alert('오류: ' + err.message);
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
