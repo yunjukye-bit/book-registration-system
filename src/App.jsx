@@ -304,27 +304,45 @@ const BookRegistrationSystem = () => {
                     
                     <td className="border border-gray-300 p-0">
                       <input
-                        type="date"
+                        type="text"
                         value={row.paperDate}
-                        onChange={(e) => handleCellChange(row.id, 'paperDate', e.target.value)}
+                        onChange={(e) => {
+                          const formatted = formatDate(e.target.value);
+                          handleCellChange(row.id, 'paperDate', formatted);
+                        }}
+                        onPaste={(e) => handlePaste(e, row.id, 'paperDate')}
+                        placeholder="YYYY-MM-DD"
+                        maxLength="10"
                         className="w-full px-3 py-2 border-0 focus:ring-2 focus:ring-blue-500 outline-none"
                       />
                     </td>
                     
                     <td className="border border-gray-300 p-0">
                       <input
-                        type="date"
+                        type="text"
                         value={row.ebookDate}
-                        onChange={(e) => handleCellChange(row.id, 'ebookDate', e.target.value)}
+                        onChange={(e) => {
+                          const formatted = formatDate(e.target.value);
+                          handleCellChange(row.id, 'ebookDate', formatted);
+                        }}
+                        onPaste={(e) => handlePaste(e, row.id, 'ebookDate')}
+                        placeholder="YYYY-MM-DD"
+                        maxLength="10"
                         className="w-full px-3 py-2 border-0 focus:ring-2 focus:ring-blue-500 outline-none"
                       />
                     </td>
                     
                     <td className="border border-gray-300 p-0">
                       <input
-                        type="date"
-                        value={row.requestDate}
-                        onChange={(e) => handleCellChange(row.id, 'requestDate', e.target.value)}
+                        type="text"
+                        value={row.ebookDate}
+                        onChange={(e) => {
+                          const formatted = formatDate(e.target.value);
+                          handleCellChange(row.id, 'ebookDate', formatted);
+                        }}
+                        onPaste={(e) => handlePaste(e, row.id, 'ebookDate')}
+                        placeholder="YYYY-MM-DD"
+                        maxLength="10"
                         className="w-full px-3 py-2 border-0 focus:ring-2 focus:ring-blue-500 outline-none"
                       />
                     </td>
