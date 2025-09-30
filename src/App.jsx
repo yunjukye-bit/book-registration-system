@@ -190,8 +190,8 @@ const BookRegistrationSystem = () => {
         <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">{currentView === 'user' ? '도서 등록 신청' : '운영자 - 신청 목록'}</h1>
-              <p className="text-sm text-gray-600 mt-1">{currentView === 'user' ? 'Google Sheets 자동 저장' : 'Google Sheets 실시간 연동'}</p>
+              <h1 className="text-2xl font-bold text-gray-900">{currentView === 'user' ? '셀렉트 도서 서비스 신청' : '운영자 - 신청 목록'}</h1>
+              <p className="text-sm text-gray-600 mt-1">{currentView === 'user' ? 'CP 사이트에서 확인한 도서 정보를 기재해 주세요. 복사 붙여넣기도 가능합니다.' : '본 페이지에 기재된 데이터의 수정을 원하실 경우, 재입력을 부탁드립니다.'}</p>
             </div>
             <button onClick={() => setCurrentView(currentView === 'user' ? 'admin' : 'user')} className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
               {currentView === 'user' ? '운영자 페이지' : '사용자 페이지'}
