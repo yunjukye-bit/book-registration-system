@@ -220,7 +220,7 @@ const BookRegistrationSystem = () => {
                 <th className="border border-gray-300 px-3 py-2 text-sm font-semibold">정가</th>
                 <th className="border border-gray-300 px-3 py-2 text-sm font-semibold">종이책 출간일</th>
                 <th className="border border-gray-300 px-3 py-2 text-sm font-semibold">전자책 출간일</th>
-                <th className="border border-gray-300 px-3 py-2 text-sm font-semibold">요청일자</th>
+                <th className="border border-gray-300 px-3 py-2 text-sm font-semibold">서비스 요청일자</th>
                 <th className="border border-gray-300 px-3 py-2 text-sm font-semibold w-16">삭제</th>
               </tr></thead><tbody>
                 {rows.map((row, idx) => (
@@ -269,7 +269,7 @@ const BookRegistrationSystem = () => {
                 <th className="border border-gray-300 px-3 py-2 font-semibold">정가</th>
                 <th className="border border-gray-300 px-3 py-2 font-semibold">종이책 출간일</th>
                 <th className="border border-gray-300 px-3 py-2 font-semibold">전자책 출간일</th>
-                <th className="border border-gray-300 px-3 py-2 font-semibold">요청일자</th>
+                <th className="border border-gray-300 px-3 py-2 font-semibold">서비스 요청일자</th>
                 <th className="border border-gray-300 px-3 py-2 font-semibold">신청일시</th>
               </tr></thead><tbody>
                 {submissions.map((sub, idx) => (
