@@ -217,9 +217,9 @@ const handleSubmit = async () => {
       <div className="max-w-7xl mx-auto">
         <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">도서 등록 신청</h1>
+            <h1 className="text-2xl font-bold text-gray-900">셀렉트 서비스 도서 신청</h1>
             <div className="text-sm text-gray-600 mt-3 space-y-1">
-              <p>- 서비스 시작일을 따로 지정해 주시지 않을 경우, 오후 5시까지 기재해 주신 데이터는 영업일 기준 +1일 0시에 오픈됩니다.</p>
+              <p>- 서비스 시작일을 따로 지정해 주시지 않을 경우, 오후 4시까지 기재해 주신 데이터는 영업일 기준 +1일 0시에 오픈됩니다.</p>
               <p>- 오기입된 데이터가 있으실 경우, 다시 기재해 주시면 마지막으로 기재하신 데이터로 반영될 예정입니다.</p>
               <p>- 도서 정보는 CP 사이트 도서목록에서 확인하실 수 있습니다.</p>
             </div>
