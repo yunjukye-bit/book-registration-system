@@ -202,7 +202,11 @@ const BookRegistrationSystem = () => {
         <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">도서 등록 신청</h1>
-            <p className="text-sm text-gray-600 mt-1">Google Sheets 자동 저장</p>
+            <p className="text-sm text-gray-600 mt-1">
+             - 서비스 시작일을 따로 지정해 주시지 않을 경우, 오후 5시까지 기재해 주신 데이터는 영업일 기준 +1일 0시에 오픈됩니다.
+             - 오기입된 데이터가 있으실 경우, 다시 기재해 주시면 마지막으로 기재하신 데이터로 반영될 예정입니다.
+             - 도서 정보는 CP 사이트 도서목록에서 확인하실 수 있습니다.
+            </p>
           </div>
         </div>
 
@@ -301,14 +305,20 @@ const BookRegistrationSystem = () => {
                         className="w-full px-3 py-2 border-0 focus:ring-2 focus:ring-blue-500 outline-none text-right"
                       />
                     </td>
-                    
+
                     <td className="border border-gray-300 p-0">
                       <input
                         type="text"
                         value={row.paperDate}
                         onChange={(e) => {
-                          const formatted = formatDate(e.target.value);
-                          handleCellChange(row.id, 'paperDate', formatted);
+                          const value = e.target.value;
+                          // Backspace나 Delete로 지우는 경우 처리
+                          if (value.length < row.paperDate.length) {
+                            handleCellChange(row.id, 'paperDate', value);
+                          } else {
+                            const formatted = formatDate(value);
+                            handleCellChange(row.id, 'paperDate', formatted);
+                          }
                         }}
                         onPaste={(e) => handlePaste(e, row.id, 'paperDate')}
                         placeholder="YYYY-MM-DD"
@@ -316,14 +326,19 @@ const BookRegistrationSystem = () => {
                         className="w-full px-3 py-2 border-0 focus:ring-2 focus:ring-blue-500 outline-none"
                       />
                     </td>
-                    
+
                     <td className="border border-gray-300 p-0">
                       <input
                         type="text"
                         value={row.ebookDate}
                         onChange={(e) => {
-                          const formatted = formatDate(e.target.value);
-                          handleCellChange(row.id, 'ebookDate', formatted);
+                          const value = e.target.value;
+                          if (value.length < row.ebookDate.length) {
+                            handleCellChange(row.id, 'ebookDate', value);
+                          } else {
+                            const formatted = formatDate(value);
+                            handleCellChange(row.id, 'ebookDate', formatted);
+                          }
                         }}
                         onPaste={(e) => handlePaste(e, row.id, 'ebookDate')}
                         placeholder="YYYY-MM-DD"
@@ -331,16 +346,21 @@ const BookRegistrationSystem = () => {
                         className="w-full px-3 py-2 border-0 focus:ring-2 focus:ring-blue-500 outline-none"
                       />
                     </td>
-                    
+
                     <td className="border border-gray-300 p-0">
                       <input
                         type="text"
-                        value={row.ebookDate}
+                        value={row.requestDate}
                         onChange={(e) => {
-                          const formatted = formatDate(e.target.value);
-                          handleCellChange(row.id, 'ebookDate', formatted);
+                          const value = e.target.value;
+                          if (value.length < row.requestDate.length) {
+                            handleCellChange(row.id, 'requestDate', value);
+                          } else {
+                            const formatted = formatDate(value);
+                            handleCellChange(row.id, 'requestDate', formatted);
+                          }
                         }}
-                        onPaste={(e) => handlePaste(e, row.id, 'ebookDate')}
+                        onPaste={(e) => handlePaste(e, row.id, 'requestDate')}
                         placeholder="YYYY-MM-DD"
                         maxLength="10"
                         className="w-full px-3 py-2 border-0 focus:ring-2 focus:ring-blue-500 outline-none"
