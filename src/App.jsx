@@ -228,7 +228,7 @@ const handleSubmit = async () => {
 
         <div className="bg-white rounded-lg shadow-sm p-6">
           <div className="mb-4 p-4 bg-blue-50 rounded-lg">
-            <p className="text-sm text-blue-800">💡 Excel 데이터를 붙여넣으면 자동으로 여러 행에 입력됩니다.</p>
+            <p className="text-sm text-blue-800">💡 복사한 데이터를 붙여 넣을 수 있습니다.</p>
           </div>
 
           <div className="overflow-x-auto">
@@ -244,7 +244,7 @@ const handleSubmit = async () => {
                   <th className="border border-gray-300 px-3 py-2 text-sm font-semibold">정가</th>
                   <th className="border border-gray-300 px-3 py-2 text-sm font-semibold">종이책 출간일</th>
                   <th className="border border-gray-300 px-3 py-2 text-sm font-semibold">전자책 출간일</th>
-                  <th className="border border-gray-300 px-3 py-2 text-sm font-semibold">요청일자</th>
+                  <th className="border border-gray-300 px-3 py-2 text-sm font-semibold">서비스 요청일자</th>
                   <th className="border border-gray-300 px-3 py-2 text-sm font-semibold w-16">삭제</th>
                 </tr>
               </thead>
