@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Trash2, Save, RefreshCw } from 'lucide-react';
+import { Plus, Trash2, Save, RefreshCw, Calendar } from 'lucide-react';
 
 const SPREADSHEET_ID = import.meta.env.VITE_SPREADSHEET_ID;
 const PRIVATE_KEY = import.meta.env.VITE_PRIVATE_KEY;
@@ -79,6 +79,18 @@ const BookRegistrationSystem = () => {
     if (!value) return '';
     const number = value.replace(/[^0-9]/g, '');
     return number.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
+  const formatDate = (value) => {
+    const numbers = value.replace(/[^0-9]/g, '');
+    if (numbers.length === 0) return '';
+    if (numbers.length <= 4) {
+      return numbers;
+    } else if (numbers.length <= 6) {
+      return numbers.slice(0, 4) + '-' + numbers.slice(4);
+    } else {
+      return numbers.slice(0, 4) + '-' + numbers.slice(4, 6) + '-' + numbers.slice(6, 8);
+    }
   };
 
   const hasContent = (row) => {
@@ -202,11 +214,11 @@ const BookRegistrationSystem = () => {
         <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">도서 등록 신청</h1>
-            <p className="text-sm text-gray-600 mt-1">
-             <br>- 서비스 시작일을 따로 지정해 주시지 않을 경우, 오후 5시까지 기재해 주신 데이터는 영업일 기준 +1일 0시에 오픈됩니다.</br>
-             <br>- 오기입된 데이터가 있으실 경우, 다시 기재해 주시면 마지막으로 기재하신 데이터로 반영될 예정입니다.</br>
-             <br>- 도서 정보는 CP 사이트 도서목록에서 확인하실 수 있습니다.</br>
-            </p>
+            <div className="text-sm text-gray-600 mt-3 space-y-1">
+              <p>- 서비스 시작일을 따로 지정해 주시지 않을 경우, 오후 5시까지 기재해 주신 데이터는 영업일 기준 +1일 0시에 오픈됩니다.</p>
+              <p>- 오기입된 데이터가 있으실 경우, 다시 기재해 주시면 마지막으로 기재하신 데이터로 반영될 예정입니다.</p>
+              <p>- 도서 정보는 CP 사이트 도서목록에서 확인하실 수 있습니다.</p>
+            </div>
           </div>
         </div>
 
@@ -307,64 +319,87 @@ const BookRegistrationSystem = () => {
                     </td>
 
                     <td className="border border-gray-300 p-0">
-                      <input
-                        type="text"
-                        value={row.paperDate}
-                        onChange={(e) => {
-                          const value = e.target.value;
-                          // Backspace나 Delete로 지우는 경우 처리
-                          if (value.length < row.paperDate.length) {
-                            handleCellChange(row.id, 'paperDate', value);
-                          } else {
-                            const formatted = formatDate(value);
-                            handleCellChange(row.id, 'paperDate', formatted);
-                          }
-                        }}
-                        onPaste={(e) => handlePaste(e, row.id, 'paperDate')}
-                        placeholder="YYYY-MM-DD"
-                        maxLength="10"
-                        className="w-full px-3 py-2 border-0 focus:ring-2 focus:ring-blue-500 outline-none"
-                      />
+                      <div className="relative">
+                        <input
+                          type="text"
+                          value={row.paperDate}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            if (value.length < row.paperDate.length) {
+                              handleCellChange(row.id, 'paperDate', value);
+                            } else {
+                              const formatted = formatDate(value);
+                              handleCellChange(row.id, 'paperDate', formatted);
+                            }
+                          }}
+                          onPaste={(e) => handlePaste(e, row.id, 'paperDate')}
+                          placeholder="YYYY-MM-DD"
+                          maxLength="10"
+                          className="w-full px-3 py-2 pr-10 border-0 focus:ring-2 focus:ring-blue-500 outline-none"
+                        />
+                        <input
+                          type="date"
+                          onChange={(e) => handleCellChange(row.id, 'paperDate', e.target.value)}
+                          className="absolute right-0 top-0 h-full w-10 opacity-0 cursor-pointer"
+                        />
+                        <Calendar size={18} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                      </div>
                     </td>
 
                     <td className="border border-gray-300 p-0">
-                      <input
-                        type="text"
-                        value={row.ebookDate}
-                        onChange={(e) => {
-                          const value = e.target.value;
-                          if (value.length < row.ebookDate.length) {
-                            handleCellChange(row.id, 'ebookDate', value);
-                          } else {
-                            const formatted = formatDate(value);
-                            handleCellChange(row.id, 'ebookDate', formatted);
-                          }
-                        }}
-                        onPaste={(e) => handlePaste(e, row.id, 'ebookDate')}
-                        placeholder="YYYY-MM-DD"
-                        maxLength="10"
-                        className="w-full px-3 py-2 border-0 focus:ring-2 focus:ring-blue-500 outline-none"
-                      />
+                      <div className="relative">
+                        <input
+                          type="text"
+                          value={row.ebookDate}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            if (value.length < row.ebookDate.length) {
+                              handleCellChange(row.id, 'ebookDate', value);
+                            } else {
+                              const formatted = formatDate(value);
+                              handleCellChange(row.id, 'ebookDate', formatted);
+                            }
+                          }}
+                          onPaste={(e) => handlePaste(e, row.id, 'ebookDate')}
+                          placeholder="YYYY-MM-DD"
+                          maxLength="10"
+                          className="w-full px-3 py-2 pr-10 border-0 focus:ring-2 focus:ring-blue-500 outline-none"
+                        />
+                        <input
+                          type="date"
+                          onChange={(e) => handleCellChange(row.id, 'ebookDate', e.target.value)}
+                          className="absolute right-0 top-0 h-full w-10 opacity-0 cursor-pointer"
+                        />
+                        <Calendar size={18} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                      </div>
                     </td>
 
                     <td className="border border-gray-300 p-0">
-                      <input
-                        type="text"
-                        value={row.requestDate}
-                        onChange={(e) => {
-                          const value = e.target.value;
-                          if (value.length < row.requestDate.length) {
-                            handleCellChange(row.id, 'requestDate', value);
-                          } else {
-                            const formatted = formatDate(value);
-                            handleCellChange(row.id, 'requestDate', formatted);
-                          }
-                        }}
-                        onPaste={(e) => handlePaste(e, row.id, 'requestDate')}
-                        placeholder="YYYY-MM-DD"
-                        maxLength="10"
-                        className="w-full px-3 py-2 border-0 focus:ring-2 focus:ring-blue-500 outline-none"
-                      />
+                      <div className="relative">
+                        <input
+                          type="text"
+                          value={row.requestDate}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            if (value.length < row.requestDate.length) {
+                              handleCellChange(row.id, 'requestDate', value);
+                            } else {
+                              const formatted = formatDate(value);
+                              handleCellChange(row.id, 'requestDate', formatted);
+                            }
+                          }}
+                          onPaste={(e) => handlePaste(e, row.id, 'requestDate')}
+                          placeholder="YYYY-MM-DD"
+                          maxLength="10"
+                          className="w-full px-3 py-2 pr-10 border-0 focus:ring-2 focus:ring-blue-500 outline-none"
+                        />
+                        <input
+                          type="date"
+                          onChange={(e) => handleCellChange(row.id, 'requestDate', e.target.value)}
+                          className="absolute right-0 top-0 h-full w-10 opacity-0 cursor-pointer"
+                        />
+                        <Calendar size={18} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                      </div>
                     </td>
                     
                     <td className="border border-gray-300 text-center">
