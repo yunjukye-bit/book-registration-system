@@ -2,36 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Download, Plus, Trash2, Save, RefreshCw, AlertCircle } from 'lucide-react';
 import * as XLSX from 'xlsx';
 
-const SPREADSHEET_ID = '1ATDQH1wV_PBUFYFHzZjBcIRrAbm_zDJKWepB5rmxHvU';
-const PRIVATE_KEY = `-----BEGIN PRIVATE KEY-----
-MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC9xtM02Ls98wE5
-oPgq541DrPD3SAzQvl2BCvV9Nvf6vxXKr2/q22tzR8m5j8Swa7gQm6v61sAgPPcY
-q4GBIw3wLamPKs2svWYHuUhY6rqpjOFwD39WvViR0nBR9eUIY3iuE1GvB9LGpXsg
-bkf3VvKkLDSCF889GtrHEXCa/PjMvrVZlVzpnX8v1BCVkvMUbUpxH5A1czEFg7uz
-0hMeVjrniL4HiYHS1cta5HgS7VAsl3dYkxZAvyYucJ9dbxzrR/vMe+qoEg6wlHyo
-/0zPz0blWBsgHQuInt2b211EANtP+X6PJ56Aa1xeHdX5T1lwHWnwS/pviIhg4l0t
-OgzUUl3NAgMBAAECggEACi7LcWf5sArEc4+oEUFIaquyaEpU6bR1NvHcF0JmTu2G
-4U/FjRAF9XMSJ2NH9gFpqHZ55WU1fOVYitnVApVbb5o7oWN2EsE84sg10hOSPXvC
-Mu2Z8xEI2hY1EajEh80ykgCWXvJoBGGnuCdCtEpVjaqTjLFzXL9+orTUWnSdcvrm
-/8jEM3X+ImW4SA2JRSvcTxVxwxftbpnM6v5FWCiMyvmBZ4z7YXjzD9jaegHQq3Oz
-Kp6ZRh41k+/UaiHw7mASG9hQu5QMbaGhmlhuH9Qv/gRXnNCdh3eAAPVmyGHZfznI
-EHnJAglh7ARa3BebijBMlblW+Z3DR2GNSHJ5ZqIVfwKBgQDcvv3yj3UerhV4c0ig
-gNosA7BRST78/fdoqOeoEiwpnDKzcKl5TAi0PO/DgN0+arnP6AyfcsWzfWEg1NK8
-KjA/cGJ/vsbzB2lNKmzUnKJd4Z997KIBzLUY5l0rJjJgig9qas2xAs9x0BS82wsJ
-C/0Jz1Ix+tX/WKxSJTxsMMNw7wKBgQDcFa0lr4BP4U3/ICfwBuqNfMbfFEQuUAoo
-QF+Qi2OxKRk53l9mu46NilxZN5aEeFkBJFIzoZFd3DzJVokCM2yoYeRzQS2yTn4N
-BoXp7jYh5ICMhL6uJWXSN1/bbYM2qd3BIbR93YfTmAZ8fl1iRzyaE14fdGOOJ2sH
-gCC6XaKlAwKBgQCqtr335z/hMSoDk8xX7C5NmbCyvF2NE+9RLkaxMRScPWLsaLV3
-y/hzQyj9Xdw8GBeJFOEmMoF4dP83f79Vq57SgNx8BJMhgdrKxYOSzWu4BPPuU6Fa
-mPB4yDbHVuvgwwR2/RAD07OQRiazgwa+wVm4S3A6nM0Ag5gIkyluVivfWwKBgAx4
-CexFqi5cZG/c4YZezfEgLaA75LT/AeRP6VomG4rQ+kXmDF+kpqnsOdkwJg3xR5Gh
-/ipAsByyOptplK+UPEa57Rh+i9k7SzbvtKyRO23mJUZQywDQy5kCXCLxbGqvawnj
-H/e1kllxloR9IEtOH+fWyxFbJbzLDOxK3Q/R+EIDAoGAJBNGcetiEYR/J7MDH/2m
-uz4ZyPSmmZDvijGxpZQJrP79ZFs/DPitEblKEZX/Mxa9HHvOK5D81C3WtPSU9wSn
-6vrAGtPEj7oYxqGFfYk/BmP9M1iwZiwrpNCvBG5GSCNAPQeHub2JXEA6MRZ61Q6C
-eePbxN6i+8ZtULVZh4WYpcU=
------END PRIVATE KEY-----`;
-const CLIENT_EMAIL = 'yunju-ridi@savvy-synapse-473706-n3.iam.gserviceaccount.com';
+const SPREADSHEET_ID = import.meta.env.VITE_SPREADSHEET_ID;
+const PRIVATE_KEY = import.meta.env.VITE_PRIVATE_KEY;
+const CLIENT_EMAIL = import.meta.env.VITE_CLIENT_EMAIL;
 
 const BookRegistrationSystem = () => {
   const [currentView, setCurrentView] = useState('user');
